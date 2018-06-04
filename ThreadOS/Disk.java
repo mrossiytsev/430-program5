@@ -116,7 +116,7 @@ public class Disk extends Thread {
 	int seekTime = transferTime + delayPerTrack 
 	    * Math.abs( targetBlockId/trackSize - currentBlockId/trackSize );
 	try {
-	    Thread.sleep( seekTime );
+	    Thread.sleep( 0 ); //Changed from seekTime to 0
 	} catch( InterruptedException e ) {
 	    SysLib.cerr( e.toString( ) + "\n" );
 	}

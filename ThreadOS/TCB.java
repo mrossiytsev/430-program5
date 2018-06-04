@@ -13,7 +13,9 @@ public class TCB {
 	terminated = false;
 
 	ftEnt = new FileTableEntry[32];    // added for the file system
-
+	for(int i = 0; i < 32; i++){
+            ftEnt[i] = null;
+	}
 	System.err.println( "threadOS: a new thread (thread=" + thread + 
 			    " tid=" + tid + 
 			    " pid=" + pid + ")");
