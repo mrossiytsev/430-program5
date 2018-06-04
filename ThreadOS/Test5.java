@@ -116,6 +116,7 @@ class Test5 extends Thread {
     SysLib.close( fd );
 
     size = SysLib.write( fd, buf16 );
+    SysLib.cout("size:" + size + "\n"); 
     if ( size > 0 ) {
       SysLib.cout( "writable even after closing the file\n" );
       return false;
@@ -196,9 +197,12 @@ class Test5 extends Thread {
       return false;
     }
     byte[] tmpBuf = new byte[2];
+    SysLib.cout("b4 Reading size\n");
     size = SysLib.read( fd, tmpBuf );
+    SysLib.cout("size: " + size + "\n");
+    SysLib.cout("tmpBuf[0]: " + tmpBuf[0] + "....tmpBuf[1]: " + tmpBuf[1] + "\n");
     if ( tmpBuf[0] != ( byte )10 ) {
-      SysLib.cout( "seek(fd,10,0) contents " + tmpBuf[0] + "(wrong\n" );
+      SysLib.cout( "seek(fd,10,0) contents " + tmpBuf[0] + "(wrong)\n" );
       SysLib.close( fd );
       return false;
     }
@@ -384,6 +388,7 @@ class Test5 extends Thread {
     fd = SysLib.open( "bothell", "r" );
 
     int position = SysLib.seek( fd, 512 * 11, 0 );
+    SysLib.cout("position: " + position + "\n");
     if ( position != 512 * 11 ) {
       SysLib.cout( "seek(fd,512 * 11,0)=" + position + " (wrong)\n" );
       SysLib.close( fd );
@@ -483,7 +488,11 @@ class Test5 extends Thread {
       return false;
     }
     SysLib.close( fd );
-    SysLib.delete( "css430" );
+    SysLib.cout("About to delete\n");
+
+    SysLib.delete( "css430" );    
+
+    SysLib.cout("Deleted?????\n");
     fd = SysLib.open( "css430", "r" );
     if ( fd != -1 ) {
       SysLib.cout( "fd = " + fd + " (wrong, css430 still exists!)\n" );
